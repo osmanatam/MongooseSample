@@ -19,7 +19,8 @@ const productmanager = {
     getall : (req,res) => {
         models.Product.find({},(err,document) => { 
             if(!err){
-                res.json(document);       
+                document.sort({name:1});
+                res.send("33");       
             }
             else{
                 res.status(500).json(err);
@@ -91,7 +92,39 @@ const productmanager = {
                 res.send("GERÇEK Silme işlemi başarılı! aman dikkat!");
             }
         });
+    },
+    getallactiveproducts: (req,res) => {
+      //isdelete kolonu false olan productları getir.
+      models.Product.find({isdelete:false},(err,document) => {
+          if(!err){
+              res.json(document);
+          }
+      })  
+    },
+    getallactiveproducstByPrice:(req,res) => {
+        //isdelete false olan ve fiyatı body den gelen fiyata eşit olan
+        var price = req.query.price;
+      
+        models.Product.find({isdelete:false,unitprice:price},(err,document) => {
+            if(!err){
+                res.json(document);
+            }
+        });
+    },
+    getallpnameorcname: (req,res) => {
+        var pname = req.query.productname;
+        var cname = req.query.categoryname;
+
+        models.Product.find({$or:[{name:pname},{categoryname:cname}]},(err,document) => {
+            if(!err){
+                res.json(document);
+            }
+        })
     }
+
+
+
+
 }
 
 module.exports = {

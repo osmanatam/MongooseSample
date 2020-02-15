@@ -5,9 +5,11 @@ const Schema = mongoose.Schema;
 
 const productschema = new Schema({
     name:String,
+    categoryname:String,
     description:String,
     unitprice:Number,
-    isdelete:Boolean
+    isdelete:{type:Boolean,default:false},
+    adddate:{type:Date,default:Date.now}
 });
 
 const employeeschema = new Schema({
