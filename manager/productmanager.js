@@ -41,6 +41,56 @@ const productmanager = {
                 res.status(500).json(err);
             }
         })
+    },
+    update: (req,res) => {
+        var productid = req.body.id;
+        models.Product.findById(productid,(err,document) => {
+            if(!err && document != null){
+                document.name = req.body.name;
+                document.unitprice = req.body.unitprice;
+                document.description = req.body.description;
+
+                document.save((saveerr,saveresult) => {
+                    if(!saveerr){
+                        res.json(document);
+                    }
+                    else{
+                        res.json(saveerr);
+                    }
+                })
+            }
+            if(!err && document == null){
+                res.send("Böyle bir ürün bulunamadı");
+            }
+            if(err){
+                res.json(err);
+            }
+            
+            
+        })
+    },
+    delete: (req,res) => {
+        var productid = req.body.id;
+
+        models.Product.findById(productid,(err,document) => {
+            if(!err){
+                document.isdelete = true;
+                document.save();
+                res.json(document);
+            }
+            else{
+                res.status(500).json(err);
+            }
+        })
+    },
+    forcedelete:(req,res) => {
+        var productid = req.body.id;
+
+        models.Product.deleteOne({_id:productid},(err) => {
+            if(!err){
+                res.send("GERÇEK Silme işlemi başarılı! aman dikkat!");
+            }
+        });
     }
 }
 

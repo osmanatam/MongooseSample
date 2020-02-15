@@ -18,6 +18,20 @@ app.get('/product',(req,res) => {
 //id ye göre ürünü getiren express
 app.get('/product/:id',(req,res) => {
     pmanager.productmanager.getbyid(req,res);
+});
+
+app.post('/product/update',(req,res) => {
+    pmanager.productmanager.update(req,res);
+});
+
+
+app.post('/product/delete',(req,res) => {
+    pmanager.productmanager.delete(req,res);
+})|
+
+
+app.post('/product/forcedelete',(req,res) => {
+    pmanager.productmanager.forcedelete(req,res);
 })
 
 
