@@ -13,7 +13,8 @@ const productschema = new Schema({
 const employeeschema = new Schema({
     name:String,
     surname:String,
-    email:String
+    email:String,
+    city:String
 });
 
 const Employee = mongoose.model('EmployeeModel', employeeschema);
