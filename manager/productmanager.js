@@ -28,7 +28,11 @@ const productmanager = {
     },
     getbyid: (req,res) => {
         var id = req.params.id;
-
+        // models.Product.find({id:id},(err,document) => {
+        //     if(!err){
+        //         res.json(document[0]);
+        //     }
+        // })
         models.Product.findById(id,(err,document) => {
             if(!err){
                 res.json(document);
