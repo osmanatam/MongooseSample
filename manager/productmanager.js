@@ -122,9 +122,6 @@ const productmanager = {
         })
     }
 
-
-
-
 }
 
 module.exports = {
