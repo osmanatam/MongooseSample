@@ -3,6 +3,12 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0-6plg3.mongodb.net/test?retr
 
 const Schema = mongoose.Schema;
 
+const adminuserSchema = new Schema({
+    email:String,
+    password:String
+})
+
+
 const webuserSchema = new Schema({
     email:String,
     password:String,
@@ -42,3 +48,6 @@ const webuser = mongoose.model('WebUserModel', webuserSchema);
 const song = mongoose.model('SongModel', songSchema);
 const artist = mongoose.model('ArtistModel', artistSchema);
 
+module.exports = {
+    webuser
+}
