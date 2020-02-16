@@ -21,7 +21,8 @@ app.get('/webuser',(req,res) => {
       } 
       catch(err) 
       {
-          res.status(401).send("TOKEN HATALI!!");
+          console.log(err);
+          res.status(401).send("Yetkisiz erişim!!");
       }
 
 })

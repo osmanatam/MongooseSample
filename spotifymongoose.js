@@ -3,6 +3,20 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0-6plg3.mongodb.net/test?retr
 
 const Schema = mongoose.Schema;
 
+
+// function BaseSchema() {   
+        
+//     Schema.apply(this, arguments);     
+                                        
+//     this.add({                              
+//         isdelete:Boolean,
+//         adddate:Date,
+//         updatedate:Date
+//     });                                     
+// };
+// util.inherits(BaseSchema, Schema);
+
+
 const adminuserSchema = new Schema({
     email:String,
     password:String
@@ -13,12 +27,12 @@ const webuserSchema = new Schema({
     email:String,
     password:String,
     favorites:[],
-    paymentmethods:[{
+    paymentmethods:{
         name:String,
         cardno:String,
         cvv:String,
         lastdate:String
-    }]
+    }
 });
 
 const artistSchema = new Schema({
